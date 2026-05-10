@@ -1,9 +1,0 @@
-fastapi
-uvicorn
-flask
-psycopg2-binary
-beautifulsoup4
-requests
-pandas
-loguru
-playwright_stealth
