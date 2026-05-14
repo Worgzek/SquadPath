@@ -67,7 +67,7 @@ Features:
 
 # NOT Included
 
-The following are intentionally excluded from MVP:
+Things we gonna do if we have enough money lol:
 - AI mentors
 - real-time chat
 - recruiter platform
