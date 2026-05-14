@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, ARRAY, Float
+from sqlalchemy import Column, String, Integer, ARRAY
 from sqlalchemy.dialects.postgresql import UUID
 import uuid
 from app.data.base import Base
@@ -13,3 +13,4 @@ class User(Base):
     career_goal = Column(String, nullable=True)
     skills = Column(ARRAY(String), default=[])
     commitment_score = Column(Integer, default=0)
+    avatar_url = Column(String, nullable=True)

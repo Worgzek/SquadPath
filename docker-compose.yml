@@ -1,10 +1,10 @@
-
-services:
+#đây là chỗ để setup máy ảo
+services: #ở đây m sẽ tạo ra các containers, hiện tại có 2 ccontainer là database với backend, sau này sẽ có thêm frontend
   db:
-    image: postgres:15
+    image: postgres:15 #phiên bản postgres15
     container_name: squadpath_db
     restart: unless-stopped
-    environment:
+    environment: #Đây là phần đăng nhập vào database, dữ liệu được lấy từ file môi trường .env
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
@@ -13,19 +13,19 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  backend:
+  backend: #container backend
     build: ./backend
     container_name: squadpath_backend
     restart: unless-stopped
     env_file:
-      - .env
+      - .env #mount file env vào máy ảo
     ports:
       - "8000:8000"
     volumes:
       - ./backend:/app
-    depends_on:
+    depends_on: #khi m chạy service, 2 container sẽ chay song song, nhưng thằng backend phải chạy dựa trên thằng db, nên là cái depends on này để khi chạy xong container db r thì tiếp tục chạy container backend
       - db
-    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload #đây là câu lệnh khởi tạo trong máy ảo
 
 volumes:
   postgres_data:
